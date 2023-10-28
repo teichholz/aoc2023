@@ -1,7 +1,7 @@
-package days
+package aoc2022.days
 
 import Day
-import days.Day2.Move
+import aoc2022.days.Day2.Move
 import readDay
 
 fun main() {

@@ -1,4 +1,4 @@
-package days
+package aoc2022.days
 
 import Day
 import readDay

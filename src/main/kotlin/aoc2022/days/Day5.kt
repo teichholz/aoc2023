@@ -1,4 +1,4 @@
-package days
+package aoc2022.days
 
 import Day
 import com.github.h0tk3y.betterParse.combinators.or
