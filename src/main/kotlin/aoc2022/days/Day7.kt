@@ -147,19 +147,12 @@ class Day7 : Day<List<Command>> {
     }
 
     override fun part2(input: List<Command>): Any {
-        val total = 70000000
-        val root = 44359867
-
-        val free = total - root
-        val update = 30000000
-        val neededSpace = update - free
-
         val ctx = Context()
         input.forEach {
             ctx.execute(it)
         }
 
-        return ctx.find({ it.size >= neededSpace }).map { it.size }.min()
+        return ctx.find({ it.size >= ctx.root.size - 40_000_000 }).map { it.size }.min()
     }
 
     override fun parse(): List<Command> = readDay(2022, 7) {

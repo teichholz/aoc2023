@@ -24,17 +24,14 @@ fun main() {
 
 class Day7S : Day<List<Command>> {
     override fun part1(input: List<Command>): Any {
-        val dirs = HashMap<String, Int>()
+        val dirs = mutableMapOf("/" to 0)
         val history = ArrayDeque<String>()
+        history.add("/")
 
-        input.forEach {
+        input.drop(1).forEach {
             when (it) {
                 is Command.Cd -> {
                     when (it.path) {
-                        "/" -> {
-                            history.clear()
-                            history.addLast("/")
-                        }
                         ".." -> {
                             history.removeLast()
                         }
