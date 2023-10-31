@@ -20,7 +20,7 @@ interface Day<T> {
     fun parse(): T
 
     fun solve () {
-        println("part 1: ${part1(parse())}")
-        println("part 2: ${part2(parse())}")
+        println("Part 1:\n${part1(parse())}")
+        println("Part 2:\n${part2(parse())}")
     }
 }
