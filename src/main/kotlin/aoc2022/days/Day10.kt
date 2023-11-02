@@ -1,6 +1,7 @@
 package aoc2022.days
 
 import Day
+import okio.BufferedSource
 import readDay
 import kotlin.math.absoluteValue
 
@@ -13,7 +14,7 @@ sealed interface Op {
     data class Addx(val x: Int) : Op
 }
 
-class Day10 : Day<List<Op>> {
+class Day10 : Day<List<Op>>(10, 2022) {
 
     class CPU(val observe: CPU.() -> Unit) {
         var cycle = 0
@@ -65,7 +66,7 @@ class Day10 : Day<List<Op>> {
         return CRT.chunked(40).map { it.joinToString("") }.joinToString("\n")
     }
 
-    override fun parse(): List<Op> = readDay(2022, 10) {
+    override fun parse(source: BufferedSource): List<Op> = source.run {
         val ops = mutableListOf<Op>()
 
         while (true) {

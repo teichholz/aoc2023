@@ -1,6 +1,7 @@
 package aoc2022.days
 
 import Day
+import okio.BufferedSource
 import readDay
 
 fun Char.priority(): Int {
@@ -16,7 +17,7 @@ fun main() {
     day.solve()
 }
 
-class Day3 : Day<List<String>> {
+class Day3 : Day<List<String>>(3, 2022) {
 
     override fun part1(input: List<String>): Any {
         return input.sumOf { it ->
@@ -41,14 +42,14 @@ class Day3 : Day<List<String>> {
         }
     }
 
-    override fun parse(): List<String> {
-        return readDay(2022, 3) {
+    override fun parse(source: BufferedSource): List<String> {
+        return source.run {
             val lines = mutableListOf<String>()
             while (true) {
                 val line = readUtf8Line() ?: break
                 lines.add(line)
             }
-            return@readDay lines
+            lines
         }
     }
 

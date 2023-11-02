@@ -1,6 +1,7 @@
 package aoc2022.days
 
 import Day
+import okio.BufferedSource
 import readDay
 
 
@@ -37,7 +38,7 @@ fun main() {
     Day8().solve()
 }
 
-class Day8 : Day<List<List<Tree>>> {
+class Day8 : Day<List<List<Tree>>>(8, 2022) {
     override fun part1(input: List<List<Tree>>): Any {
         val lr = input.map {
             visible(it) + visible(it.reversed())
@@ -64,7 +65,7 @@ class Day8 : Day<List<List<Tree>>> {
         }.max()
     }
 
-    override fun parse(): List<List<Tree>> = readDay(2022, 8) {
+    override fun parse(source: BufferedSource): List<List<Tree>> = source.run {
         val grid = mutableListOf<List<Tree>>()
 
         while (true) {
@@ -74,7 +75,7 @@ class Day8 : Day<List<List<Tree>>> {
             grid.add(trees)
         }
 
-        return@readDay grid
+        grid
     }
 
 }

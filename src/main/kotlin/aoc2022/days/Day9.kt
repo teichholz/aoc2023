@@ -1,6 +1,7 @@
 package aoc2022.days
 
 import Day
+import okio.BufferedSource
 import readDay
 import kotlin.math.absoluteValue
 import kotlin.math.sign
@@ -18,7 +19,7 @@ fun main() {
     Day9().solve()
 }
 
-class Day9 : Day<List<Pair<Int, Int>>> {
+class Day9 : Day<List<Pair<Int, Int>>>(9, 2022) {
     override fun part1(input: List<Pair<Int, Int>>): Any {
         var head = 0 to 0
         var tail = 0 to 0
@@ -41,7 +42,7 @@ class Day9 : Day<List<Pair<Int, Int>>> {
         return "TODO"
     }
 
-    override fun parse(): List<Pair<Int, Int>> = readDay(2022, 9) {
+    override fun parse(source: BufferedSource): List<Pair<Int, Int>> = source.run {
         val motions = mutableListOf<Pair<Int, Int>>()
 
         while (true) {

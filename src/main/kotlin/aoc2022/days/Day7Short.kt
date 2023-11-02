@@ -1,28 +1,14 @@
 package aoc2022.days
 
 import Day
-import aoc2022.days.CommandParser.dir
-import aoc2022.days.CommandParser.path
-import com.github.h0tk3y.betterParse.combinators.oneOrMore
-import com.github.h0tk3y.betterParse.combinators.or
-import com.github.h0tk3y.betterParse.combinators.times
-import com.github.h0tk3y.betterParse.combinators.unaryMinus
-import com.github.h0tk3y.betterParse.combinators.use
-import com.github.h0tk3y.betterParse.combinators.zeroOrMore
-import com.github.h0tk3y.betterParse.grammar.Grammar
 import com.github.h0tk3y.betterParse.grammar.parseToEnd
-import com.github.h0tk3y.betterParse.grammar.parser
-import com.github.h0tk3y.betterParse.lexer.literalToken
-import com.github.h0tk3y.betterParse.lexer.regexToken
-import com.github.h0tk3y.betterParse.parser.Parser
-import readDay
+import okio.BufferedSource
 
 fun main() {
     Day7S().solve()
 }
 
-
-class Day7S : Day<List<Command>> {
+class Day7S : Day<List<Command>>(7, 2022) {
     override fun part1(input: List<Command>): Any {
         val dirs = mutableMapOf("/" to 0)
         val history = ArrayDeque<String>()
@@ -63,7 +49,7 @@ class Day7S : Day<List<Command>> {
         return "TODO"
     }
 
-    override fun parse(): List<Command> = readDay(2022, 7) {
+    override fun parse(source: BufferedSource): List<Command> = source.run {
         CommandParser.parseToEnd(readUtf8())
     }
 

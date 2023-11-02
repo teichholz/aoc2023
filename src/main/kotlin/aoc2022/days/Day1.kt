@@ -1,13 +1,14 @@
 package aoc2022.days
 
 import Day
+import okio.BufferedSource
 import readDay
 
 fun main() {
     Day1().solve()
 }
 
-class Day1 : Day<List<List<Int>>> {
+class Day1 : Day<List<List<Int>>>(1, 2022) {
 
     override fun part1(input: List<List<Int>>): Int {
         val max = input.map {
@@ -25,8 +26,8 @@ class Day1 : Day<List<List<Int>>> {
         return max
     }
 
-    override fun parse(): List<List<Int>> =
-        readDay(2022, 1) {
+    override fun parse(source: BufferedSource): List<List<Int>> =
+        source.run {
             val allCalories = mutableListOf<List<Int>>()
             val calories = mutableListOf<Int>()
 
@@ -40,6 +41,6 @@ class Day1 : Day<List<List<Int>>> {
                 }
             }
 
-            return@readDay allCalories
+            allCalories
         }
 }

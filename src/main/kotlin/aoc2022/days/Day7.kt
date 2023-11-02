@@ -13,7 +13,7 @@ import com.github.h0tk3y.betterParse.grammar.parser
 import com.github.h0tk3y.betterParse.lexer.literalToken
 import com.github.h0tk3y.betterParse.lexer.regexToken
 import com.github.h0tk3y.betterParse.parser.Parser
-import readDay
+import okio.BufferedSource
 
 sealed interface IFile {
     val name: String
@@ -136,7 +136,7 @@ fun main() {
     Day7().solve()
 }
 
-class Day7 : Day<List<Command>> {
+class Day7 : Day<List<Command>>(7, 2022) {
     override fun part1(input: List<Command>): Any {
         val ctx = Context()
         input.forEach {
@@ -155,7 +155,7 @@ class Day7 : Day<List<Command>> {
         return ctx.find({ it.size >= ctx.root.size - 40_000_000 }).map { it.size }.min()
     }
 
-    override fun parse(): List<Command> = readDay(2022, 7) {
+    override fun parse(source: BufferedSource): List<Command> = source.run {
         CommandParser.parseToEnd(readUtf8())
     }
 

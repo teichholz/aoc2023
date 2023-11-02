@@ -2,13 +2,14 @@ package aoc2022.days
 
 import Day
 import aoc2022.days.Day2.Move
+import okio.BufferedSource
 import readDay
 
 fun main() {
     Day2().solve()
 }
 
-class Day2 : Day<List<Pair<Move, Move>>> {
+class Day2 : Day<List<Pair<Move, Move>>>(2, 2022) {
 
     enum class Move {
         ROCK,
@@ -67,8 +68,8 @@ class Day2 : Day<List<Pair<Move, Move>>> {
         }
     }
 
-    override fun parse(): List<Pair<Move, Move>> =
-        readDay(2022, 2) {
+    override fun parse(source: BufferedSource): List<Pair<Move, Move>> =
+        source.run {
             val turns = mutableListOf<Pair<Move, Move>>()
 
             while (true) {
@@ -89,7 +90,7 @@ class Day2 : Day<List<Pair<Move, Move>>> {
                 turns.add(Pair(op, me))
             }
 
-            return@readDay turns
+            turns
         }
 }
 

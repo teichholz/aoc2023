@@ -1,6 +1,7 @@
 package aoc2022.days
 
 import Day
+import okio.BufferedSource
 import readDay
 
 fun main() {
@@ -15,7 +16,7 @@ fun IntRange.overlaps(other: IntRange): Boolean {
     return this.contains(other.first) || this.contains(other.last)
 }
 
-class Day4 : Day<List<Pair<IntRange, IntRange>>> {
+class Day4 : Day<List<Pair<IntRange, IntRange>>>(4, 2022) {
 
     override fun part1(input: List<Pair<IntRange, IntRange>>): Any {
         return input.count { (f, s) -> f.contains(s) || s.contains(f) }
@@ -25,8 +26,8 @@ class Day4 : Day<List<Pair<IntRange, IntRange>>> {
         return input.count { (f, s) -> f.overlaps(s) || s.overlaps(f) }
     }
 
-    override fun parse(): List<Pair<IntRange, IntRange>> {
-        return readDay(2022, 4) {
+    override fun parse(source: BufferedSource): List<Pair<IntRange, IntRange>> {
+        return source.run {
             val pairs = mutableListOf<Pair<IntRange, IntRange>>()
 
             while (true) {
@@ -37,7 +38,7 @@ class Day4 : Day<List<Pair<IntRange, IntRange>>> {
                 pairs.add(Pair(fStart.toInt()..fEnd.toInt(), sStart.toInt()..sEnd.toInt()))
             }
 
-            return@readDay pairs
+            pairs
         }
     }
 

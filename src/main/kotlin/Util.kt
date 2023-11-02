@@ -14,13 +14,13 @@ fun <T> readDay(year: Int, day: Int, block: BufferedSource.() -> T): T {
     }
 }
 
-interface Day<T> {
-    fun part1(input: T): Any
-    fun part2(input: T): Any
-    fun parse(): T
+abstract class Day<T>(val day: Int, val year: Int) {
+    abstract fun part1(input: T): Any
+    abstract fun part2(input: T): Any
+    abstract fun parse(source: BufferedSource): T
 
     fun solve () {
-        println("Part 1:\n${part1(parse())}")
-        println("Part 2:\n${part2(parse())}")
+        println("Part 1:\n${part1(readDay(year, day) { parse( this) })}")
+        println("Part 2:\n${part2(readDay(year, day) { parse( this) })}")
     }
 }

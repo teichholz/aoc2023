@@ -11,7 +11,7 @@ import com.github.h0tk3y.betterParse.grammar.parseToEnd
 import com.github.h0tk3y.betterParse.lexer.literalToken
 import com.github.h0tk3y.betterParse.lexer.regexToken
 import com.github.h0tk3y.betterParse.parser.Parser
-import readDay
+import okio.BufferedSource
 
 data class Move(val quantity: Int, val from: Int, val to: Int)
 data class In(val stacks: List<ArrayDeque<Char>>, val moves: List<Move>)
@@ -63,7 +63,7 @@ fun main() {
     Day5().solve()
 }
 
-class Day5: Day<In> {
+class Day5: Day<In>(5, 2022) {
     override fun part1(input: In): Any {
         input.moves.forEach {
             interprete(input.stacks, it)
@@ -109,8 +109,8 @@ class Day5: Day<In> {
         override val rootParser: Parser<Move> = moveParser
     }
 
-    override fun parse(): In {
-        return readDay(2022, 5) {
+    override fun parse(source: BufferedSource): In {
+        return source.run {
             val first = mutableListOf<String>()
             val second = mutableListOf<String>()
             var use = first
@@ -136,7 +136,7 @@ class Day5: Day<In> {
                 MoveParser.parseToEnd(it)
             }
 
-            return@readDay In(stacks.map { ArrayDeque(it) }, moves)
+            In(stacks.map { ArrayDeque(it) }, moves)
         }
     }
 
